@@ -1,56 +1,633 @@
-﻿<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
-<title>西安市"四改两拆"挂图指挥系统</title>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>毕业快乐</title>
+		<!--<embed src="image/fsc.mp3" autostart="true" loop="true" hidden="true"></embed>-->
+	<link rel="stylesheet" type=	"text/css" href="css/animate.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+		
+	</head>
+	<body>
+		<audio autoplay="autoplay" loop="loop" preload="auto" controls="controls"
+            src="image/fsc.mp3" style="display: none;"></audio>
 
-<style type="text/css">
-* {
-	box-sizing: border-box;
-}
-body,html {
-	width: 100%;
-	height: 100%;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-}
-
-#main-loading {
-	width: 100%;
-	height: 100%;
-	text-align: center;
-	overflow: hidden;
-}
-
-#main-page {
-	display: none;
-	width: 100%;
-	height: 100%;
-	position: relative;
-}
-
-#jimu-layout-manager {
-	width: 100%;
-	height: 100%;
-	position: absolute;
-}
-</style>
-
-</head>
-<body>
-	<div id="main-loading">
-		<div id="loading-title"></div>     
-		<div id="app-loading"></div>
-		<div id="loading-gif"></div>
-	</div>
-
-	<div id="main-page">
-		<div id="jimu-layout-manager">
+		<div id="wind">
+		    <div id="plane" class="front">  
+		        <textarea class="message">苏飞瑜同学，编辑你的正能量，快乐工作，努力生活，开心每一天~</textarea>
+		        <button class="send">请开启你的毕业之旅 </button> <br/>
+		    </div>
+		 
+		    <div id="wind_container" class="beginning">
+		        <div id="left-wing">
+		            <div class="top_left curvable"> </div>
+		            <div class="bottom_left curvable"> </div>
+		            <div class="wing wing1"></div>
+		            <div class="wing wing2"></div>
+		        </div>
+		 
+		        <div id="right-wing">
+		            <div class="top_right curvable"> </div>
+		            <div class="bottom_right curvable"> </div>
+		            <div class="wing wing3"></div>
+		            <div class="wing wing4"></div>
+		        </div>
+		 
+		    </div>
+		 
 		</div>
-等等
-	</div>
+		
+		<!--/*外层最大容器*/-->
+		<div class="wrap" style="display: none;">
+	<!--	/*包裹所有元素的容器*/-->
+		<div class="cube">
+			<!--前面图片 -->
+			<div class="out_front">
+				<img src="img/1.jpg"  class="pic"/>
+			</div>
+			<!--后面图片 -->
+			<div class="out_back">
+				<img src="img/2.jpg"  class="pic"/>
+			</div>
+			<!--左图片 -->
+			<div class="out_left">
+				<img src="img/3.jpg"  class="pic"/>
+			</div>
+			<div class="out_right">
+				<img src="img/4.jpg"  class="pic"/>
+			</div>
+			<div class="out_top">
+				<img src="img/5.jpg"  class="pic"/>
+			</div>
+			<div class="out_bottom">
+				<img src="img/6.jpg"  class="pic"/>
+			</div>
+			<!--小正方体 --> 
+			<span class="in_front">
+				<img src="img/7.jpg" class="in_pic" />
+			</span>
+			<span class="in_back">
+			     <img src="img/8.jpg" class="in_pic" />
+			</span>
+			<span class="in_left">
+				<img src="img/9.jpg" class="in_pic" />
+			</span>
+			<span class="in_right">
+				<img src="img/10.jpg" class="in_pic" />
+			</span>
+			<span class="in_top">
+				<img src="img/11.jpg" class="in_pic" />
+			</span>
+			<span class="in_bottom">
+				<img src="img/12.jpg" class="in_pic" />
+			</span>
+		</div>
+		<div id="menu">
+				
+				
+				<button id="tnext">下一页</button>
+			</div>
+		</div>
+		
+		<!--第三层-->
+		<div class="mygrid" style="display: none;">
+			<div id="container"></div>
+			<div id="info"></div>
+			<div id="menu">
+				<button id="spre">上一页</button>
+				<button id="table">表格</button>
+				<button id="sphere">球状</button>
+				<button id="helix">螺旋</button>
+				<button id="grid">格网</button>
+				<button id="snext">下一页</button>
+			</div>
+
+		</div>
+		<script src="lib/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/three.js"></script>
+		<script src="lib/tween.min.js"></script>
+		<script src="lib/TrackballControls.js"></script>
+		<script src="lib/CSS3DRenderer.js"></script>
+		<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+			var personArray = new Array;
+    		var CurPersonNum = 0;
+    		// animate
+    		var _in = ['bounceIn','bounceInDown','bounceInLeft','bounceInRight','bounceInUp','fadeIn','fadeInDown','fadeInDownBig','fadeInLeft','fadeInLeftBig','fadeInRight','fadeInRightBig','fadeInUp','fadeInUpBig','rotateIn','rotateInDownLeft','rotateInDownRight','rotateInUpLeft','rotateInUpRight','slideInDown','slideInLeft','slideInRight'];
+    		var _out = ['bounceOut','bounceOutDown','bounceOutLeft','bounceOutRight','bounceOutUp','fadeOut','fadeOutDown','fadeOutDownBig','fadeOutLeft','fadeOutLeftBig','fadeOutRight','fadeOutRightBig','fadeOutUp','fadeOutUpBig','rotateOut','rotateOutDownLeft','rotateOutDownRight','rotateOutUpLeft','rotateOutUpRight','slideOutDown','slideOutLeft','slideOutRight'];
+    		
+    		// 模拟推送数据
+			var s = setInterval(function(){
+				// get animate
+				var rand_in = parseInt(Math.random() * _in.length,10);
+    			var rand_out = parseInt(Math.random() * _out.length,10);
+				if(CurPersonNum >= personArray.length){
+					CurPersonNum = 0;
+				}
+				$('.show_info').show();
+				$('.show_info').addClass(_in[rand_in]);
+				setTimeout(function(){
+					$('.show_info').removeClass(_in[rand_in]);
+					// 更改展示的图片
+					var img = document.getElementsByClassName('element')[CurPersonNum].getElementsByTagName('img')[0];
+					img.setAttribute('src','img/b.jpg');
+					++CurPersonNum;
+					setTimeout(function(){
+						$('.show_info').addClass(_out[rand_out]);
+						setTimeout(function(){
+							$('.show_info').removeClass(_out[rand_out]);
+							$('.show_info').hide();
+						},1000);
+					},1500);
+				},1000);
+			},4500);
+
+			// 生成虚拟数据
+	        for(var i=0;i<19;i++){
+				personArray.push({
+		            image: "img/1.jpg"
+		        });
+		        personArray.push({
+		            image: "img/2.jpg"
+		        });
+		        personArray.push({
+		            image: "img/3.jpg"
+		        });
+		        personArray.push({
+		            image: "img/4.jpg"
+		        });
+		         personArray.push({
+		            image: "img/5.jpg"
+		        });
+		         personArray.push({
+		            image: "img/6.jpg"
+		        });
+		         personArray.push({
+		            image: "img/7.jpg"
+		        });
+		         personArray.push({
+		            image: "img/8.jpg"
+		        });
+		         personArray.push({
+		            image: "img/9.jpg"
+		        });
+		          personArray.push({
+		            image: "img/10.jpg"
+		        });
+	        }
+
+	        var table = new Array;
+		    for (var i = 0; i < personArray.length; i++) {
+		        table[i] = new Object();
+		        if (i < personArray.length) {
+		            table[i] = personArray[i];
+		            table[i].src = personArray[i].thumb_image;
+		        } 
+		        table[i].p_x = i % 20 + 1;
+		        table[i].p_y = Math.floor(i / 20) + 1;
+		    }
+
+
+		
+
+			var camera, scene, renderer;
+			var controls;
+
+			var objects = [];
+			var targets = { table: [], sphere: [], helix: [], grid: [] };
+
+			init();
+			animate();
+
+			function init() {
+
+				camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 10000 );
+				camera.position.z = 3000;
+
+				scene = new THREE.Scene();
+
+				// table
+
+				for ( var i = 0; i < table.length; i ++ ) {
+
+					var element = document.createElement( 'div' );
+					element.className = 'element';
+					element.style.backgroundColor = 'rgba(0,127,127,' + ( Math.random() * 0.5 + 0.25 ) + ')';
+
+					var img = document.createElement('img');
+					img.src = table[ i ].image;
+					element.appendChild( img );
+
+
+					
+
+					var object = new THREE.CSS3DObject( element );
+					object.position.x = Math.random() * 4000 - 2000;
+					object.position.y = Math.random() * 4000 - 2000;
+					object.position.z = Math.random() * 4000 - 2000;
+					scene.add( object );
+
+					objects.push( object );
+
+					// 表格需要坐标进行排序的
+					var object = new THREE.Object3D();
+				
+					object.position.x = ( table[ i ].p_x * 140 ) - 1330;
+					object.position.y = - ( table[ i ].p_y * 180 ) + 990;
+
+					targets.table.push( object );
+
+				}
+
+				// sphere
+
+				var vector = new THREE.Vector3();
+				var spherical = new THREE.Spherical();
+
+				for ( var i = 0, l = objects.length; i < l; i ++ ) {
+
+					var phi = Math.acos( -1 + ( 2 * i ) / l );
+					var theta = Math.sqrt( l * Math.PI ) * phi;
+
+					var object = new THREE.Object3D();
+
+					spherical.set( 800, phi, theta );
+
+					object.position.setFromSpherical( spherical );
+
+					vector.copy( object.position ).multiplyScalar( 2 );
+
+					object.lookAt( vector );
+
+					targets.sphere.push( object );
+
+				}
+
+				// helix
+
+				var vector = new THREE.Vector3();
+				var cylindrical = new THREE.Cylindrical();
+
+				for ( var i = 0, l = objects.length; i < l; i ++ ) {
+
+					var theta = i * 0.175 + Math.PI;
+					var y = - ( i * 5 ) + 450;
+
+					var object = new THREE.Object3D();
+
+					// 参数一 圈的大小 参数二 左右间距 参数三 上下间距
+					cylindrical.set( 900, theta, y );
+
+					object.position.setFromCylindrical( cylindrical );
+
+					vector.x = object.position.x * 2;
+					vector.y = object.position.y;
+					vector.z = object.position.z * 2;
+
+					object.lookAt( vector );
+
+					targets.helix.push( object );
+
+				}
+
+				// grid
+
+				for ( var i = 0; i < objects.length; i ++ ) {
+
+					var object = new THREE.Object3D();
+
+					object.position.x = ( ( i % 5 ) * 400 ) - 800; // 400 图片的左右间距  800 x轴中心店
+					object.position.y = ( - ( Math.floor( i / 5 ) % 5 ) * 300 ) + 500;  // 500 y轴中心店
+					object.position.z = ( Math.floor( i / 25 ) ) * 200 - 800;// 300调整 片间距 800z轴中心店
+
+					targets.grid.push( object );
+
+				}
+
+				//渲染
+				renderer = new THREE.CSS3DRenderer();
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.domElement.style.position = 'absolute';
+				document.getElementById( 'container' ).appendChild( renderer.domElement );
+
+				// 鼠标控制
+				controls = new THREE.TrackballControls( camera, renderer.domElement );
+				controls.rotateSpeed = 0.5;
+				controls.minDistance = 500;
+				controls.maxDistance = 6000;
+				controls.addEventListener( 'change', render );
+
+				// 自动更换
+				var ini = 0;
+				setInterval(function(){
+					ini = ini >= 3 ? 0 : ini;
+					++ini;
+					switch(ini){
+						case 1:
+							transform( targets.sphere, 1000 );
+						break;
+						case 2:
+							transform( targets.helix, 1000 );
+						break;
+						case 3:
+							transform( targets.grid, 1000 );
+						break;
+					}	
+				},8000);
+
+				var button = document.getElementById( 'table' );
+				button.addEventListener( 'click', function ( event ) {
+					transform( targets.table, 1000 );
+				}, false );
+
+				var button = document.getElementById( 'sphere' );
+				button.addEventListener( 'click', function ( event ) {
+					transform( targets.sphere, 2000 );
+				}, false );
+
+				var button = document.getElementById( 'helix' );
+				button.addEventListener( 'click', function ( event ) {
+					transform( targets.helix, 2000 );
+				}, false );
+
+				var button = document.getElementById( 'grid' );
+				button.addEventListener( 'click', function ( event ) {
+					transform( targets.grid, 2000 );
+				}, false );
+
+				transform( targets.table, 2000 );
+
+				//
+
+				window.addEventListener( 'resize', onWindowResize, false );
+
+			}
+
+			function transform( targets, duration ) {
+
+				TWEEN.removeAll();
+
+				for ( var i = 0; i < objects.length; i ++ ) {
+
+					var object = objects[ i ];
+					var target = targets[ i ];
+
+					new TWEEN.Tween( object.position )
+						.to( { x: target.position.x, y: target.position.y, z: target.position.z }, Math.random() * duration + duration )
+						.easing( TWEEN.Easing.Exponential.InOut )
+						.start();
+
+					new TWEEN.Tween( object.rotation )
+						.to( { x: target.rotation.x, y: target.rotation.y, z: target.rotation.z }, Math.random() * duration + duration )
+						.easing( TWEEN.Easing.Exponential.InOut )
+						.start();
+
+				}
+
+				new TWEEN.Tween( this )
+					.to( {}, duration * 2 )
+					.onUpdate( render )
+					.start();
+
+			}
+
+			function onWindowResize() {
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+				render();
+
+			}
+
+			function animate() {
+
+				// 让场景通过x轴或者y轴旋转  & z
+				// scene.rotation.x += 0.011;
+				scene.rotation.y += 0.008;
+
+				requestAnimationFrame( animate );
+
+				TWEEN.update();
+
+				controls.update();
+
+				// 渲染循环
+				render();
+
+			}
+
+			function render() {
+
+				renderer.render( scene, camera );
+
+			}
+
+
+
+
+var RENDERER = {
+	INIT_CHERRY_BLOSSOM_COUNT : 30,
+	MAX_ADDING_INTERVAL : 10,
 	
-</body>
+	init : function(){
+		this.setParameters();
+		this.reconstructMethods();
+		this.createCherries();
+		this.render();
+	},
+	setParameters : function(){
+		this.$container = $('#wind');
+		this.width = this.$container.width();
+		this.height = this.$container.height();
+		this.context = $('<canvas />').attr({width : this.width, height : this.height}).appendTo(this.$container).get(0).getContext('2d');
+		this.cherries = [];
+		this.maxAddingInterval = Math.round(this.MAX_ADDING_INTERVAL * 1000 / this.width);
+		this.addingInterval = this.maxAddingInterval;
+	},
+	reconstructMethods : function(){
+		this.render = this.render.bind(this);
+	},
+	createCherries : function(){
+		for(var i = 0, length = Math.round(this.INIT_CHERRY_BLOSSOM_COUNT * this.width / 1000); i < length; i++){
+			this.cherries.push(new CHERRY_BLOSSOM(this, true));
+		}
+	},
+	render : function(){
+		requestAnimationFrame(this.render);
+		this.context.clearRect(0, 0, this.width, this.height);
+		
+		this.cherries.sort(function(cherry1, cherry2){
+			return cherry1.z - cherry2.z;
+		});
+		for(var i = this.cherries.length - 1; i >= 0; i--){
+			if(!this.cherries[i].render(this.context)){
+				this.cherries.splice(i, 1);
+			}
+		}
+		if(--this.addingInterval == 0){
+			this.addingInterval = this.maxAddingInterval;
+			this.cherries.push(new CHERRY_BLOSSOM(this, false));
+		}
+	}
+};
+var CHERRY_BLOSSOM = function(renderer, isRandom){
+	this.renderer = renderer;
+	this.init(isRandom);
+};
+CHERRY_BLOSSOM.prototype = {
+	FOCUS_POSITION : 300,
+	FAR_LIMIT : 600,
+	MAX_RIPPLE_COUNT : 100,
+	RIPPLE_RADIUS : 100,
+	SURFACE_RATE : 0.5,
+	SINK_OFFSET : 20,
+	
+	init : function(isRandom){
+		this.x = this.getRandomValue(-this.renderer.width, this.renderer.width);
+		this.y = isRandom ? this.getRandomValue(0, this.renderer.height) : this.renderer.height * 1.5;
+		this.z = this.getRandomValue(0, this.FAR_LIMIT);
+		this.vx = this.getRandomValue(-2, 2);
+		this.vy = -2;
+		this.theta = this.getRandomValue(0, Math.PI * 2);
+		this.phi = this.getRandomValue(0, Math.PI * 2);
+		this.psi = 0;
+		this.dpsi = this.getRandomValue(Math.PI / 600, Math.PI / 300);
+		this.opacity = 0;
+		this.endTheta = false;
+		this.endPhi = false;
+		this.rippleCount = 0;
+		
+		var axis = this.getAxis(),
+			theta = this.theta + Math.ceil(-(this.y + this.renderer.height * this.SURFACE_RATE) / this.vy) * Math.PI / 500;
+		theta %= Math.PI * 2;
+		
+		this.offsetY = 40 * ((theta <= Math.PI / 2 || theta >= Math.PI * 3 / 2) ? -1 : 1);
+		this.thresholdY = this.renderer.height / 2 + this.renderer.height * this.SURFACE_RATE * axis.rate;
+		this.entityColor = this.renderer.context.createRadialGradient(0, 40, 0, 0, 40, 80);
+		this.entityColor.addColorStop(0, 'hsl(330, 70%, ' + 50 * (0.3 + axis.rate) + '%)');
+		this.entityColor.addColorStop(0.05, 'hsl(330, 40%,' + 55 * (0.3 + axis.rate) + '%)');
+		this.entityColor.addColorStop(1, 'hsl(330, 20%, ' + 70 * (0.3 + axis.rate) + '%)');
+		this.shadowColor = this.renderer.context.createRadialGradient(0, 40, 0, 0, 40, 80);
+		this.shadowColor.addColorStop(0, 'hsl(330, 40%, ' + 30 * (0.3 + axis.rate) + '%)');
+		this.shadowColor.addColorStop(0.05, 'hsl(330, 40%,' + 30 * (0.3 + axis.rate) + '%)');
+		this.shadowColor.addColorStop(1, 'hsl(330, 20%, ' + 40 * (0.3 + axis.rate) + '%)');
+	},
+	getRandomValue : function(min, max){
+		return min + (max - min) * Math.random();
+	},
+	getAxis : function(){
+		var rate = this.FOCUS_POSITION / (this.z + this.FOCUS_POSITION),
+			x = this.renderer.width / 2 + this.x * rate,
+			y = this.renderer.height / 2 - this.y * rate;
+		return {rate : rate, x : x, y : y};
+	},
+	renderCherry : function(context, axis){
+		context.beginPath();
+		context.moveTo(0, 40);
+		context.bezierCurveTo(-60, 20, -10, -60, 0, -20);
+		context.bezierCurveTo(10, -60, 60, 20, 0, 40);
+		context.fill();
+		
+		for(var i = -4; i < 4; i++){
+			context.beginPath();
+			context.moveTo(0, 40);
+			context.quadraticCurveTo(i * 12, 10, i * 4, -24 + Math.abs(i) * 2);
+			context.stroke();
+		}
+	},
+	render : function(context){
+		var axis = this.getAxis();
+		
+		if(axis.y == this.thresholdY && this.rippleCount < this.MAX_RIPPLE_COUNT){
+			context.save();
+			context.lineWidth = 2;
+			context.strokeStyle = 'hsla(0, 0%, 100%, ' + (this.MAX_RIPPLE_COUNT - this.rippleCount) / this.MAX_RIPPLE_COUNT + ')';
+			context.translate(axis.x + this.offsetY * axis.rate * (this.theta <= Math.PI ? -1 : 1), axis.y);
+			context.scale(1, 0.3);
+			context.beginPath();
+			context.arc(0, 0, this.rippleCount / this.MAX_RIPPLE_COUNT * this.RIPPLE_RADIUS * axis.rate, 0, Math.PI * 2, false);
+			context.stroke();
+			context.restore();
+			this.rippleCount++;
+		}
+		if(axis.y < this.thresholdY || (!this.endTheta || !this.endPhi)){
+			if(this.y <= 0){
+				this.opacity = Math.min(this.opacity + 0.01, 1);
+			}
+			context.save();
+			context.globalAlpha = this.opacity;
+			context.fillStyle = this.shadowColor;
+			context.strokeStyle = 'hsl(330, 30%,' + 40 * (0.3 + axis.rate) + '%)';
+			context.translate(axis.x, Math.max(axis.y, this.thresholdY + this.thresholdY - axis.y));
+			context.rotate(Math.PI - this.theta);
+			context.scale(axis.rate * -Math.sin(this.phi), axis.rate);
+			context.translate(0, this.offsetY);
+			this.renderCherry(context, axis);
+			context.restore();
+		}
+		context.save();
+		context.fillStyle = this.entityColor;
+		context.strokeStyle = 'hsl(330, 40%,' + 70 * (0.3 + axis.rate) + '%)';
+		context.translate(axis.x, axis.y + Math.abs(this.SINK_OFFSET * Math.sin(this.psi) * axis.rate));
+		context.rotate(this.theta);
+		context.scale(axis.rate * Math.sin(this.phi), axis.rate);
+		context.translate(0, this.offsetY);
+		this.renderCherry(context, axis);
+		context.restore();
+		
+		if(this.y <= -this.renderer.height / 4){
+			if(!this.endTheta){
+				for(var theta = Math.PI / 2, end = Math.PI * 3 / 2; theta <= end; theta += Math.PI){
+					if(this.theta < theta && this.theta + Math.PI / 200 > theta){
+						this.theta = theta;
+						this.endTheta = true;
+						break;
+					}
+				}
+			}
+			if(!this.endPhi){
+				for(var phi = Math.PI / 8, end = Math.PI * 7 / 8; phi <= end; phi += Math.PI * 3 / 4){
+					if(this.phi < phi && this.phi + Math.PI / 200 > phi){
+						this.phi = Math.PI / 8;
+						this.endPhi = true;
+						break;
+					}
+				}
+			}
+		}
+		if(!this.endTheta){
+			if(axis.y == this.thresholdY){
+				this.theta += Math.PI / 200 * ((this.theta < Math.PI / 2 || (this.theta >= Math.PI && this.theta < Math.PI * 3 / 2)) ? 1 : -1);
+			}else{
+				this.theta += Math.PI / 500;
+			}
+			this.theta %= Math.PI * 2;
+		}
+		if(this.endPhi){
+			if(this.rippleCount == this.MAX_RIPPLE_COUNT){
+				this.psi += this.dpsi;
+				this.psi %= Math.PI * 2;
+			}
+		}else{
+			this.phi += Math.PI / ((axis.y == this.thresholdY) ? 200 : 500);
+			this.phi %= Math.PI;
+		}
+		if(this.y <= -this.renderer.height * this.SURFACE_RATE){
+			this.x += 2;
+			this.y = -this.renderer.height * this.SURFACE_RATE;
+		}else{
+			this.x += this.vx;
+			this.y += this.vy;
+		}
+		return this.z > -this.FOCUS_POSITION && this.z < this.FAR_LIMIT && this.x < this.renderer.width * 1.5;
+	}
+};
+$(function(){
+	RENDERER.init();
+});
+		</script>
+	</body>
 </html>
