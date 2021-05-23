@@ -291,7 +291,7 @@ $(function(){
 	    $("#wpre").click(function(){
 
 	       $('.end').fadeOut(1000);
-	       $('.pbgb').fadeIn(3000);
+	       $('#pbgb').fadeIn(3000);
 	    });
 	   
 	 
