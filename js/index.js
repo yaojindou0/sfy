@@ -82,7 +82,7 @@ $(function(){
     ********************/
 
     if (X < 768) {
-      textValue = 'Hou are you?';
+      textValue = '毕业快乐';
       fontSizeValue = 50;
       stepValue = 2;
       particleSizeValue = 4;
