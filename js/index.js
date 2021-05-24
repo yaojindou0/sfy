@@ -240,12 +240,12 @@ $(function(){
       Y = canvas.height = offscreenCanvas.height = window.innerHeight;
       particles = [];
       if (X < 768) {
-        textValue = 'Hou are you?';
+        textValue = '毕业快乐 ';
         fontSizeValue = 50;
         stepValue = 2;
         particleSizeValue = 4;
       } else {
-        textValue = 'Hou are you?';
+        textValue = '毕业快乐 ';
         fontSizeValue = 200;
         stepValue = 8;
         particleSizeValue = 10;
