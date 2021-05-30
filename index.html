@@ -398,7 +398,8 @@
 					$('.show_info').removeClass(_in[rand_in]);
 					// 更改展示的图片
 					var img = document.getElementsByClassName('element')[CurPersonNum].getElementsByTagName('img')[0];
-					img.setAttribute('src','img/b.jpg');
+				
+					img.setAttribute('src','img/'+CurPersonNum+'.jpg');
 					++CurPersonNum;
 					setTimeout(function(){
 						$('.show_info').addClass(_out[rand_out]);
@@ -472,8 +473,29 @@
 		          personArray.push({
 		            image: "img/20.jpg"
 		        });
+		          personArray.push({
+		            image: "img/21.jpg"
+		        });
+		          personArray.push({
+		            image: "img/22.jpg"
+		        });
+		          personArray.push({
+		            image: "img/23.jpg"
+		        });
+		          personArray.push({
+		            image: "img/24.jpg"
+		        });
+		          personArray.push({
+		            image: "img/25.jpg"
+		        });
+		        
 	        }
-
+  				personArray.push({
+		            image: "img/26.jpg"
+		        });
+		        personArray.push({
+		            image: "img/27.jpg"
+		        });
 	        var table = new Array;
 		    for (var i = 0; i < personArray.length; i++) {
 		        table[i] = new Object();
