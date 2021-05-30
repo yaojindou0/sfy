@@ -48,4 +48,4 @@ var s = setInterval(function(){
 	animation12.beginElement();
 	animation13.beginElement();
 	animation14.beginElement();
-	},20000);
+	},10000);
